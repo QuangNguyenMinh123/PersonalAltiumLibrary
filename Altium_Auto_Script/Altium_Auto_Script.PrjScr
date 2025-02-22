@@ -104,35 +104,15 @@ DocumentUniqueId=
 StartProcName=Library_Extractor.pas>ExtractIntLib
 
 [Generic_Watches]
-0=Workspace
-1=IntegratedLibraryManager
-2=FilesList
+8=ExtractedFiles
+9=FilesList
+10=IntFilesList
 
 [Generic_ScriptingSystemBreakpoints]
-ModuleName1=D:\PersonalAltiumLibrary\Altium_Auto_Script\Library_Extractor.pas
-Line1=4
+ModuleName1=F:\PersonalAltiumLibrary\Altium_Auto_Script\CompileLibraries.pas
+Line1=37
 Condition1=
 Enabled1=True
-ModuleName2=D:\PersonalAltiumLibrary\Altium_Auto_Script\Library_Extractor.pas
-Line2=12
-Condition2=
-Enabled2=True
-ModuleName3=D:\PersonalAltiumLibrary\Altium_Auto_Script\Library_Extractor.pas
-Line3=18
-Condition3=
-Enabled3=True
-ModuleName4=D:\PersonalAltiumLibrary\Altium_Auto_Script\Library_Extractor.pas
-Line4=24
-Condition4=
-Enabled4=True
-ModuleName5=D:\PersonalAltiumLibrary\Altium_Auto_Script\Library_Extractor.pas
-Line5=27
-Condition5=
-Enabled5=True
-ModuleName6=D:\PersonalAltiumLibrary\Altium_Auto_Script\Library_Extractor.pas
-Line6=30
-Condition6=
-Enabled6=True
 
 [OutputGroup1]
 Name=Netlist Outputs

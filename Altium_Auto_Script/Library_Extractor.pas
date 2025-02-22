@@ -3,32 +3,74 @@
 // email: nguyenminhquangcn1@gmail.com                                        //
 ////////////////////////////////////////////////////////////////////////////////
 Program ExtractSourceLibsFromIntLibs;
+////////////////////////////////////////////////////////////////////////////////
+// Extract all IntLib from a given folder                                     //
+////////////////////////////////////////////////////////////////////////////////
+procedure ExtractSourcesFromIntLibs(const Folder: String; FilesList: TStringList);
 Var
-   SourceFolder : String;
-   FilesList    : TStringList;
    i            : Integer;
+   ExtractedFiles: String;
+   SearchFolder : String; // New variable to avoid modifying 'const' Folder
 Begin
-    If IntegratedLibraryManager = Nil then Exit;
+    // Ensure folder path ends with a backslash
+    SearchFolder := Folder;
+    If (SearchFolder <> '') Then
+        If (SearchFolder[Length(SearchFolder)] <> '\') Then
+            SearchFolder := SearchFolder + '\';
 
-    If (SourceFolder <> '') Then
-        If (SourceFolder[Length(SourceFolder)] <> '\') Then
-            SourceFolder := SourceFolder + '\';
-
-    If (DirectoryExists('D:\PersonalAltiumLibrary\Button')) Then
+    // Check if the specified directory exists
+    If (DirectoryExists(SearchFolder)) Then
     Begin
-       Try
-              FilesList            := TStringList.Create;
-              FilesList.Sorted     := True;
-              FilesList.Duplicates := dupIgnore;
+        FilesList.Duplicates := dupIgnore; // Ignore duplicates
+        FilesList.CaseSensitive := True;
 
-              // FindFiles function is a built in function from Scripting...
-              FindFiles(SourceFolder,'*.IntLib',faAnyFile,False,FilesList);
+        // Find all .IntLib files in the specified folder
+        FindFiles(SearchFolder, '*.IntLib', faAnyFile, False, FilesList);
 
-              For i := 0 To FilesList.Count - 1 Do
-                   IntegratedLibraryManager.ExtractSources(FilesList.Strings[i]);
+        // Check if no IntLib files were found
+        If FilesList.Count = 0 Then
+        Begin
+            ShowMessage('No IntLib files found in the specified folder.');
+            Exit;
+        End;
 
-       Finally
-                  FilesList.Free;
-       End;
+        ExtractedFiles := '';
+        // Extract sources from each found IntLib file
+        For i := 0 To FilesList.Count - 1 Do
+        Begin
+            IntegratedLibraryManager.ExtractSources(FilesList.Strings[i]);
+            ExtractedFiles := ExtractedFiles + FilesList.Strings[i] + sLineBreak;
+        End;
+
+        ShowMessage('The following files have been extracted successfully:' + sLineBreak + ExtractedFiles);
+    End
+    Else
+    Begin
+        ShowMessage('The specified source directory does not exist.');
     End;
-End.
+End;
+
+////////////////////////////////////////////////////////////////////////////////
+// Create new Folder                                                          //
+////////////////////////////////////////////////////////////////////////////////
+procedure CreateNewFolder(const ParentFolder: String, const FolderName: String);
+Var
+   FilesList    : TStringList;
+Begin
+     If DirectoryExists(ParentFolder) Then
+        If Not DirectoryExists(ParentFolder + FolderName) Then
+        Begin
+            CreateDir(ParentFolder + FolderName); // Create the new folder
+        End;
+End;
+////////////////////////////////////////////////////////////////////////////////
+// Remove an IntLib file                                                      //
+////////////////////////////////////////////////////////////////////////////////
+Procedure RemoveFile(const FileName: String);
+Begin
+    // Check if the file exists before deleting
+    If FileExists(FileName) Then
+       DeleteFile(FileName)
+End;
+
+

@@ -4,32 +4,46 @@
 // This script is used as a compiler for automatically combining all .IntLib  //
 // to a single .LibPkg file                                                   //
 ////////////////////////////////////////////////////////////////////////////////
+Procedure CreateAndCompileLibPkg();
+Var
+    LibPkg: ISch_LibraryPackage;
+    ProjectFilePath, SchLibFilePath, PcbLibFilePath, IntLibOutputPath: String;
+Begin
+    // Define paths (Modify these paths as needed)
+    SchLibFilePath  := 'C:\AltiumProjects\MyComponent.SchLib';
+    PcbLibFilePath  := 'C:\AltiumProjects\MyComponent.PcbLib';
+    IntLibOutputPath := 'C:\AltiumProjects\MyLibrary.IntLib';
 
-unit LibraryCompiler;  // Declare the unit name
+    // Create a new Library Package project
+    LibPkg := SchServer.NewLibraryPackage;
+    If LibPkg = Nil Then
+    Begin
+        ShowMessage('Failed to create Library Package.');
+        Exit;
+    End;
 
-interface  // Interface section where functions/procedures are declared
-procedure CompileSchLib(LibPath: String);  // Declare the procedure or function
+    // Set the Library Package file name
+    LibPkg.SetFileName(ProjectFilePath);
 
-implementation  // Implementation section where logic is written
+    // Add the schematic and PCB library files to the package
+    LibPkg.AddLibrary(SchLibFilePath);
+    LibPkg.AddLibrary(PcbLibFilePath);
 
-uses
-  SchServer, Dialogs;  // Import necessary Altium modules
+    // Save the Library Package
+    If Not LibPkg.Save Then
+    Begin
+        ShowMessage('Failed to save the Library Package.');
+        Exit;
+    End;
 
-procedure CompileSchLib(LibPath: String);
-var
-  Doc: ISch_Lib;  // Declare a variable to store the library document
-begin
-  // Load the Schematic Library
-  Doc := SchServer.LoadSchLib(LibPath);
+    // Compile the Library Package into an Integrated Library
+    If Not LibPkg.Compile(IntLibOutputPath) Then
+    Begin
+        ShowMessage('Failed to compile the Integrated Library.');
+        Exit;
+    End;
 
-  if Doc <> nil then  // Check if the library was loaded successfully
-  begin
-    Doc.Compile;  // Compile the library
-    ShowMessage('Compilation successful: ' + LibPath);  // Display success message
-  end
-  else
-    ShowMessage('Error: Could not open library!');  // Display error message if load fails
-end;
+    ShowMessage('Library Package compiled successfully: ' + IntLibOutputPath);
+End;
 
-end;  // End of the unit
 

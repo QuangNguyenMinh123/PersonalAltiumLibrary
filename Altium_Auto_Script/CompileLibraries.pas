@@ -111,5 +111,6 @@ Begin
      ExtractSourcesFromIntLibs(SourceDir, IntFilesList);
      // Create Temp
      CreateNewFolder(SourceDir, 'Temp');
+     ShowMessage('IntLib files are extracted successfully');
 End.
 

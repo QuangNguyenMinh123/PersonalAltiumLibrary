@@ -50,40 +50,6 @@ PrefsVaultGUID=
 PrefsRevisionGUID=
 
 [Document1]
-DocumentPath=Library_Compiler.pas
-AnnotationEnabled=1
-AnnotateStartValue=1
-AnnotationIndexControlEnabled=0
-AnnotateSuffix=
-AnnotateScope=All
-AnnotateOrder=-1
-DoLibraryUpdate=1
-DoDatabaseUpdate=1
-ClassGenCCAutoEnabled=1
-ClassGenCCAutoRoomEnabled=0
-ClassGenNCAutoScope=None
-DItemRevisionGUID=
-GenerateClassCluster=0
-DocumentUniqueId=
-
-[Document2]
-DocumentPath=Library_Extractor.pas
-AnnotationEnabled=1
-AnnotateStartValue=1
-AnnotationIndexControlEnabled=0
-AnnotateSuffix=
-AnnotateScope=All
-AnnotateOrder=-1
-DoLibraryUpdate=1
-DoDatabaseUpdate=1
-ClassGenCCAutoEnabled=1
-ClassGenCCAutoRoomEnabled=0
-ClassGenNCAutoScope=None
-DItemRevisionGUID=
-GenerateClassCluster=0
-DocumentUniqueId=
-
-[Document3]
 DocumentPath=CompileLibraries.pas
 AnnotationEnabled=1
 AnnotateStartValue=1
@@ -104,16 +70,14 @@ DocumentUniqueId=
 StartProcName=Library_Extractor.pas>ExtractIntLib
 
 [Generic_Watches]
-8=ExtractedFiles
-9=FilesList
-10=IntFilesList
+5=LibName
 0=LibPkg
-
-[Generic_ScriptingSystemBreakpoints]
-ModuleName1=F:\PersonalAltiumLibrary\Altium_Auto_Script\Library_Compiler.pas
-Line1=24
-Condition1=
-Enabled1=True
+1=Lib
+2=LibPkgName
+3=LibPkgPath
+4=LibPkgName
+6=ParentFolder
+7=FolderName
 
 [OutputGroup1]
 Name=Netlist Outputs

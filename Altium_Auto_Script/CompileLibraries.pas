@@ -22,6 +22,12 @@ Var
    SourceIitFilesListFolder : String; // Variable to save the folder containing IitLib libraries
    IntFilesList             : TStringList;
    SourceFolder             : String;
+   Path, LibName            : String;
+   PathParts                : TArray;
+   FileHandle               : TextFile;
+
+   LastDelimiterPos: Integer;
+
 Begin
      SourceFolder := 'F:\PersonalAltiumLibrary\Button\';
      IntFilesList := TStringList.Create;
@@ -30,11 +36,22 @@ Begin
     If (SourceFolder <> '') Then
         If (SourceFolder[Length(SourceFolder)] <> '\') Then
             SourceFolder := SourceFolder + '\';
-    // Extract all IntLib in folder SourceFolder and pass variable to IntFilesList
-    ExtractSourcesFromIntLibs(SourceFolder, IntFilesList);
-    // Create New folder and gather all data
+     // Read Final IntLib name
+     Path := SourceFolder;
+     Path := ExcludeTrailingPathDelimiter(Path);
+     LastDelimiterPos := LastDelimiter('\', Path);
+     LibName := Copy(Path, LastDelimiterPos + 1, Length(Path) - LastDelimiterPos);
+     LibName := SourceFolder + LibName + '.LibPkg';
+     // Extract all IntLib in folder SourceFolder and pass variable to IntFilesList
+     ExtractSourcesFromIntLibs(SourceFolder, IntFilesList);
+     // Remove old IntLib file
+     RemoveFile(LibName);
+     // Create a brand new IntLib file
+     AssignFile(FileHandle, LibName);
+     Rewrite(FileHandle);
+     // Add Library to LibName
+     CreateNewFolder(SourceFolder, 'MyButton');
 
-    CreateNewFolder(SourceFolder, 'MyButton');
-    RemoveFile('F:\PersonalAltiumLibrary\Button\Button.IntLib');
+     // CreateAndCompileLibPkg();
 End.
 

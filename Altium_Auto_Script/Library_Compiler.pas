@@ -4,46 +4,31 @@
 // This script is used as a compiler for automatically combining all .IntLib  //
 // to a single .LibPkg file                                                   //
 ////////////////////////////////////////////////////////////////////////////////
-Procedure CreateAndCompileLibPkg();
+Procedure CreateAndCompileLibPkg;
 Var
-    LibPkg: ISch_LibraryPackage;
-    ProjectFilePath, SchLibFilePath, PcbLibFilePath, IntLibOutputPath: String;
+    LibPkg: IServerDocument;
+    LibPkgPath: String;
+
+
 Begin
     // Define paths (Modify these paths as needed)
-    SchLibFilePath  := 'C:\AltiumProjects\MyComponent.SchLib';
-    PcbLibFilePath  := 'C:\AltiumProjects\MyComponent.PcbLib';
-    IntLibOutputPath := 'C:\AltiumProjects\MyLibrary.IntLib';
+    LibPkgPath  := 'F:\PersonalAltiumLibrary\Button\MyButton\Integrated.LibPkg';
+    // IntLibOutputPath := 'F:\PersonalAltiumLibrary\Button\TL1105SPF160Q\SW_TL1105SPF160Q.IntLib';
+    LibPkg := Client.OpenDocument('LibPkg',LibPkgPath);
 
-    // Create a new Library Package project
-    LibPkg := SchServer.NewLibraryPackage;
-    If LibPkg = Nil Then
-    Begin
-        ShowMessage('Failed to create Library Package.');
-        Exit;
-    End;
 
-    // Set the Library Package file name
-    LibPkg.SetFileName(ProjectFilePath);
+  If LibPkg <> Nil Then
+  Begin
+    // Save the new Library Package to the specified path
+    LibPkg.SaveAs(LibPkgPath);
+    ShowMessage('Library Package Created: ' + LibPkgPath);
+  End
+  Else
+    ShowMessage('Failed to create Library Package');
 
-    // Add the schematic and PCB library files to the package
-    LibPkg.AddLibrary(SchLibFilePath);
-    LibPkg.AddLibrary(PcbLibFilePath);
 
-    // Save the Library Package
-    If Not LibPkg.Save Then
-    Begin
-        ShowMessage('Failed to save the Library Package.');
-        Exit;
-    End;
-
-    // Compile the Library Package into an Integrated Library
-    If Not LibPkg.Compile(IntLibOutputPath) Then
-    Begin
-        ShowMessage('Failed to compile the Integrated Library.');
-        Exit;
-    End;
-
-    ShowMessage('Library Package compiled successfully: ' + IntLibOutputPath);
 End;
-
+////////////////////////////////////////////////////////////////////////////////
+// CreateLibPkg                                                               //
+////////////////////////////////////////////////////////////////////////////////
 

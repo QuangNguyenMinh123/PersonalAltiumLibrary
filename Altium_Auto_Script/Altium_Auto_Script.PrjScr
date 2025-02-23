@@ -107,10 +107,11 @@ StartProcName=Library_Extractor.pas>ExtractIntLib
 8=ExtractedFiles
 9=FilesList
 10=IntFilesList
+0=LibPkg
 
 [Generic_ScriptingSystemBreakpoints]
-ModuleName1=F:\PersonalAltiumLibrary\Altium_Auto_Script\CompileLibraries.pas
-Line1=37
+ModuleName1=F:\PersonalAltiumLibrary\Altium_Auto_Script\Library_Compiler.pas
+Line1=24
 Condition1=
 Enabled1=True
 

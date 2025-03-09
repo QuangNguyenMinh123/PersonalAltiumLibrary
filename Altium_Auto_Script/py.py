@@ -18,7 +18,7 @@ pwd = os.getcwd()
 # Set up paths
 destination_dir = os.path.join(source_dir, "Temp")
 folder_name = os.path.basename(source_dir)
-final_lib = os.path.join(source_dir, f"{folder_name}.IntLib")
+final_lib = os.path.join(source_dir, f"{folder_name}.LibPkg")
 ################################################################################
 # Multi process                                                                #
 ################################################################################

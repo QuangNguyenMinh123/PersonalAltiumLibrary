@@ -14,6 +14,18 @@
 ////////////////////////////////////////////////////////////////////////////////
 uses
   Library_Extractor, SysUtils, Windows;
+Var
+   SourceIitFilesListFolder            : String; // Variable to save the folder containing IitLib libraries
+   IntFilesList                        : TStringList;
+   SourceDir                           : String;
+   Path, LibPkgName, LibPkgPath        : String;
+   PathParts                           : TArray;
+   FileHandle, Document                : IDocument;
+   F                                   : TextFile;
+   LastDelimiterPos                    : Integer;
+   CurrentDir                          : string;
+   FileHandler                         : TextFile;
+   MarkerFile                          : String;
 ////////////////////////////////////////////////////////////////////////////////
 procedure ExtractSourcesFromIntLibs(const Folder: String; FilesList: TStringList);
 Var
@@ -44,7 +56,10 @@ Begin
         // Extract sources from each found IntLib file
         For i := 0 To FilesList.Count - 1 Do
         Begin
-            IntegratedLibraryManager.ExtractSources(FilesList.Strings[i]);
+            If (LibPkgName + '.IntLib') <> FilesList.Strings[i] Then
+            Begin
+                IntegratedLibraryManager.ExtractSources(FilesList.Strings[i]);
+            End;
         End;
     End
     Else
@@ -78,16 +93,7 @@ End;
 ////////////////////////////////////////////////////////////////////////////////
 // Main                                                                       //
 ////////////////////////////////////////////////////////////////////////////////
-Var
-   SourceIitFilesListFolder            : String; // Variable to save the folder containing IitLib libraries
-   IntFilesList                        : TStringList;
-   SourceDir                           : String;
-   Path, LibPkgName, LibPkgPath        : String;
-   PathParts                           : TArray;
-   FileHandle, Document                : IDocument;
-   F                                   : TextFile;
-   LastDelimiterPos                    : Integer;
-   CurrentDir                          : string;
+
 Begin
      AssignFile(F, 'P:\PersonalAltiumLibrary\Altium_Auto_Script\Mytext.txt');
      Reset(F);
@@ -112,5 +118,6 @@ Begin
      // Create Temp
      CreateNewFolder(SourceDir, 'Temp');
      ShowMessage('IntLib files are extracted successfully');
+     exit
 End.
 

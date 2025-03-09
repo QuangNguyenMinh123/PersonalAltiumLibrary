@@ -89,7 +89,7 @@ Var
    LastDelimiterPos                    : Integer;
    CurrentDir                          : string;
 Begin
-     AssignFile(F, 'F:\PersonalAltiumLibrary\Altium_Auto_Script\Mytext.txt');
+     AssignFile(F, 'P:\PersonalAltiumLibrary\Altium_Auto_Script\Mytext.txt');
      Reset(F);
      ReadLn(F, SourceDir);
      CloseFile(F);

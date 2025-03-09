@@ -6,7 +6,7 @@ import time
 ################################################################################
 # Variable definition                                                          #
 ################################################################################
-source_dir = r"P:\PersonalAltiumLibrary\Antenna"
+source_dir = r"P:\PersonalAltiumLibrary\Keyboard Project"
 # Dummy file
 tempFolder = source_dir + r"\Temp"
 # Altium path
@@ -86,7 +86,7 @@ def main():
         os.remove(final_lib)
     if not os.path.exists(source_dir + '\\Output'):
         os.mkdir(source_dir + '\\Output')
-    finalFilePath = source_dir + "\\" + outputFileName + '\\Project Outputs for ' + outputFileName
+    finalFilePath = source_dir + '\\Project Outputs for ' + outputFileName
     finalFilePath += '\\' + outputFileName +'.IntLib'
     if os.path.exists(finalFilePath):
         shutil.move(finalFilePath, source_dir + '\\Output')

@@ -10,3 +10,5 @@ Altium_Auto_Script contains DelphiScript to automating update library whenever a
 + Next, the extracted SchLib and PcbLib files will be move to Temp folder.<br>
   A new Altium windows will be prompted. Create a new Altium library file and add those existing files to library<br>
   Compile it, and now you have a new Library file
+# Celestial library
+https://altiumlibrary.com/GetStarted/Troubleshooting

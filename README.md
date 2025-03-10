@@ -12,3 +12,4 @@ Altium_Auto_Script contains DelphiScript to automating update library whenever a
   Compile it, and now you have a new Library file
 # Celestial library
 https://altiumlibrary.com/GetStarted/Troubleshooting
+https://github.com/issus/altium-library.git

@@ -6,7 +6,7 @@ import time
 ################################################################################
 # Variable definition                                                          #
 ################################################################################
-source_dir = r"P:\PersonalAltiumLibrary\Acc Chip"
+source_dir = r"P:\PersonalAltiumLibrary\USB"
 # Dummy file
 tempFolder = source_dir + r"\Temp"
 # Altium path

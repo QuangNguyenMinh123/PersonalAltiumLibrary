@@ -5,5 +5,7 @@
 */*/*/*/*.Zip
 */*/*/*/*/*.Zip
 ./altium-library
+.\altium-library
 ./Altium_Auto_Script/Mytext.txt
-./Celestial Altium Library.DbLib
+.\Celestial Altium Library.DbLib
+.\Altium_Auto_Script\Mytext.txt

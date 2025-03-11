@@ -1,5 +1,7 @@
 # Brief
 This is my repository containing Altium Library, and guideline for install it, download it, compile it ...<br>
+# Install python3:
+```python3.exe```
 # Altium automating script
 Altium_Auto_Script contains DelphiScript to automating update library whenever a new IntLib file is added. <br>
 + Go to Altium_Auto_Script directory ```cd .\Altium_Auto_Script\ ```

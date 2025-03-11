@@ -6,7 +6,7 @@ import time
 ################################################################################
 # Variable definition                                                          #
 ################################################################################
-source_dir = r"P:\PersonalAltiumLibrary\Keyboard Project"
+source_dir = r"P:\PersonalAltiumLibrary\Acc Chip"
 # Dummy file
 tempFolder = source_dir + r"\Temp"
 # Altium path

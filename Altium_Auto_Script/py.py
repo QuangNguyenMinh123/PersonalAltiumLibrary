@@ -6,7 +6,7 @@ import time
 ################################################################################
 # Variable definition                                                          #
 ################################################################################
-source_dir = r"P:\PersonalAltiumLibrary\USB"
+source_dir = r"P:\PersonalAltiumLibrary\Keyboard Project"
 # Dummy file
 tempFolder = source_dir + r"\Temp"
 # Altium path
@@ -58,6 +58,12 @@ def courier(filename, event):
 # Main                                                                         #
 ################################################################################
 def main():
+    finalFilePath = source_dir + '\\Project Outputs for ' + outputFileName
+    finalFilePath += '\\' + outputFileName +'.IntLib'
+    existingIntLib = source_dir + '\\Output' + '\\' + outputFileName +'.IntLib'
+    # First, remove Library
+    if os.path.exists(existingIntLib):
+        os.remove(existingIntLib)
     # Create an Event object to synchronize processes
     folder_created_event = multiprocessing.Event()
     # Create two processes
@@ -86,8 +92,7 @@ def main():
         os.remove(final_lib)
     if not os.path.exists(source_dir + '\\Output'):
         os.mkdir(source_dir + '\\Output')
-    finalFilePath = source_dir + '\\Project Outputs for ' + outputFileName
-    finalFilePath += '\\' + outputFileName +'.IntLib'
+    
     if os.path.exists(finalFilePath):
         shutil.move(finalFilePath, source_dir + '\\Output')
     for root, dirs, files in os.walk(source_dir, topdown=False):
